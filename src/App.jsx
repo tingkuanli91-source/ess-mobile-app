@@ -7,17 +7,17 @@ import Analysis from './pages/Analysis'
 import Settings from './pages/Settings'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true) // Default to logged in for testing
 
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-        <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-        <Route path="/monitoring" element={isLoggedIn ? <Monitoring /> : <Navigate to="/login" />} />
-        <Route path="/analysis" element={isLoggedIn ? <Analysis /> : <Navigate to="/login" />} />
-        <Route path="/settings" element={isLoggedIn ? <Settings onLogout={() => setIsLoggedIn(false)} /> : <Navigate to="/login" />} />
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/monitoring" element={<Monitoring />} />
+        <Route path="/analysis" element={<Analysis />} />
+        <Route path="/settings" element={<Settings onLogout={() => setIsLoggedIn(false)} />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
   )
