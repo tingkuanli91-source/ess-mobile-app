@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Bolt } from 'lucide-react'
 
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState('')
@@ -13,71 +12,52 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-[#101822] flex flex-col">
-      <div className="flex items-center p-4 pb-2 justify-between">
-        <div className="text-[#136dec] flex size-12 shrink-0 items-center justify-center">
-          <Bolt className="w-10 h-10" />
-        </div>
-        <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
-          台灣微網科技
-        </h2>
+    <div style={{ minHeight: '100vh', padding: '20px', display: 'flex', flexDirection: 'column' }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }}>
+        <svg className="primary" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <span style={{ fontSize: '20px', fontWeight: 'bold', marginLeft: '10px' }}>台灣微網科技</span>
       </div>
 
-      <div className="@container px-4 py-6">
-        <div 
-          className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px] shadow-2xl relative"
-          style={{ backgroundColor: '#1a2744' }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101822]/90 to-transparent"></div>
-          <div className="relative p-6">
-            <h2 className="text-white tracking-tight text-[28px] font-bold leading-tight">
-              Welcome Back
-            </h2>
-            <p className="text-slate-300 text-base font-normal mt-1">
-              Manage your energy storage efficiently
-            </p>
-          </div>
-        </div>
+      {/* Hero */}
+      <div style={{ 
+        background: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)', 
+        borderRadius: '16px', 
+        padding: '40px 24px',
+        marginBottom: '24px'
+      }}>
+        <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px' }}>Welcome Back</h2>
+        <p style={{ color: '#94a3b8' }}>Manage your energy storage efficiently</p>
       </div>
 
-      <div className="flex flex-col gap-6 px-4 py-4 max-w-md mx-auto w-full">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <label className="flex flex-col w-full">
-            <p className="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal pb-2 ml-1">帳號 (Username)</p>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              className="w-full h-14 px-4 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#136dec]/50"
-            />
-          </label>
-
-          <label className="flex flex-col w-full">
-            <p className="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal pb-2 ml-1">密碼 (Password)</p>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="w-full h-14 px-4 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#136dec]/50"
-            />
-          </label>
-
-          <button
-            type="submit"
-            className="w-full bg-[#136dec] hover:bg-[#136dec]/90 text-white font-bold py-4 rounded-lg shadow-lg shadow-[#136dec]/20 transition-all flex items-center justify-center gap-2 mt-2"
-          >
-            <span className="text-lg">登入 (Login)</span>
-          </button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-semibold">
-            Energy Management System v2.4
-          </p>
+      {/* Form */}
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div>
+          <label style={{ display: 'block', marginBottom: '8px', color: '#94a3b8', fontSize: '14px' }}>帳號</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter username"
+            className="input"
+          />
         </div>
-      </div>
+        <div>
+          <label style={{ display: 'block', marginBottom: '8px', color: '#94a3b8', fontSize: '14px' }}>密碼</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter password"
+            className="input"
+          />
+        </div>
+        <button type="submit" className="btn-primary" style={{ marginTop: '8px' }}>
+          登入
+        </button>
+      </form>
     </div>
   )
 }

@@ -1,25 +1,64 @@
 <!doctype html>
-<html lang="zh-TW" class="dark">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ESS 能源管理系統 - Taiwan Microgrid v2</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ESS 能源管理系統 - Taiwan Microgrid</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#136dec',
-            }
-          }
-        }
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        min-height: 100vh;
+        color: #f1f5f9;
       }
-    </script>
+      .primary { color: #136dec; }
+      .bg-primary { background-color: #136dec; }
+      .btn-primary {
+        background: #136dec;
+        color: white;
+        padding: 16px;
+        border-radius: 12px;
+        border: none;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+      }
+      .card {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #334155;
+        background: rgba(15, 23, 42, 0.6);
+        color: white;
+        font-size: 16px;
+      }
+      .input:focus { outline: 2px solid #136dec; }
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0f172a;
+        border-top: 1px solid #1e293b;
+        padding: 12px 20px 24px;
+        display: flex;
+        justify-content: space-around;
+      }
+      .nav-item { text-align: center; color: #64748b; font-size: 10px; }
+      .nav-item.active { color: #136dec; }
+      .nav-icon { width: 24px; height: 24px; margin: 0 auto 4px; }
+    </style>
   </head>
-  <body class="bg-[#101822]">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

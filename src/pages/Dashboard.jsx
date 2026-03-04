@@ -1,171 +1,121 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Battery, TrendingUp, Activity, Sun, Home, Zap, ChevronRight, BarChart3 } from 'lucide-react'
 
 const mockData = {
   batteryLevel: 88,
-  chargingStatus: '充電中',
-  remaining: '12.4 kWh',
-  duration: '~18 小時',
   solarPower: '2.4 kW',
   homePower: '1.2 kW',
   gridPower: '0.0 kW',
-  batteryPower: '1.2 kW (充電)',
   dailyGeneration: '18.5 kWh',
-  dailyIncrease: 12,
   systemStatus: '運行良好',
   uptime: '124天'
 }
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 flex flex-col">
-      <header className="flex items-center justify-between px-4 pt-6 pb-2 sticky top-0 bg-gray-50 dark:bg-slate-950 z-10">
-        <div className="flex items-center gap-2">
-          <Bolt className="text-[#136dec] w-8 h-8" />
-          <h1 className="text-xl font-bold tracking-tight">台灣微網科技</h1>
+    <div style={{ minHeight: '100vh', padding: '20px', paddingBottom: '100px' }}>
+      {/* Header */}
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg className="primary" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <span style={{ fontSize: '18px', fontWeight: 'bold' }}>台灣微網科技</span>
         </div>
-        <div className="flex gap-3">
-          <button className="p-2 rounded-full bg-slate-200 dark:bg-slate-800">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405a2.352 2.352 0 00-3.182-3.182l-4.95-4.95a2.352 2.352 0 00-3.182-3.182L12 6" />
-            </svg>
-          </button>
-          <button className="p-2 rounded-full bg-slate-200 dark:bg-slate-800">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 8z" />
-            </svg>
-          </button>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="18" height="18" fill="#64748b" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          </div>
+          <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="18" height="18" fill="#64748b" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto px-4 pb-24">
-        <section className="mt-6">
-          <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-            <svg className="w-5 h-5 text-[#136dec]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
-            </svg>
-            能量流向圖
-          </h2>
-          <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-amber-400/10 flex items-center justify-center border border-amber-400/30">
-                  <Sun className="text-amber-400 w-6 h-6" />
-                </div>
-                <span className="text-xs font-medium text-slate-400">太陽能</span>
-                <span className="text-sm font-bold text-amber-400">{mockData.solarPower}</span>
-              </div>
-
-              <div className="flex-1 h-px bg-slate-700 mx-2 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <ChevronRight className="text-slate-500 text-sm" />
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                  <Home className="text-blue-500 w-7 h-7" />
-                </div>
-                <span className="text-xs font-medium text-slate-400">負載 (家庭)</span>
-                <span className="text-sm font-bold text-blue-500">{mockData.homePower}</span>
-              </div>
-
-              <div className="flex-1 h-px bg-slate-700 mx-2 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <ChevronRight className="text-slate-500 text-sm rotate-180" />
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-slate-700/50 flex items-center justify-center border border-slate-600">
-                  <Zap className="text-slate-400 w-6 h-6" />
-                </div>
-                <span className="text-xs font-medium text-slate-400">電網</span>
-                <span className="text-sm font-bold text-slate-400">{mockData.gridPower}</span>
-              </div>
+      {/* Power Flow Card */}
+      <div className="card" style={{ marginBottom: '16px' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '16px' }}>⚡ 能量流向圖</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0' }}>
+          {/* Solar */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(251,191,36,0.1)', border: '1px solid rgba(251,191,36,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px' }}>
+              <svg width="24" height="24" fill="#fbbf24" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
             </div>
-
-            <div className="flex flex-col items-center">
-              <div className="h-8 w-px bg-slate-700 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <ChevronRight className="text-slate-500 text-sm rotate-90" />
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-2 mt-2">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/30">
-                  <Battery className="text-emerald-500 w-6 h-6" />
-                </div>
-                <span className="text-xs font-medium text-slate-400">儲能電池</span>
-                <span className="text-sm font-bold text-emerald-500">{mockData.batteryPower}</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-6 grid grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-            <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m0 0h4m-4 0a4 4 0 018 4v4m0-4h4m4 0v4m0-4H8" />
-              </svg>
-              <span className="text-xs font-medium">當日發電量</span>
-            </div>
-            <p className="text-lg font-bold">{mockData.dailyGeneration}</p>
-            <p className="text-xs text-emerald-500 mt-1">↑ {mockData.dailyIncrease}% 同期</p>
+            <p style={{ fontSize: '12px', color: '#64748b' }}>太陽能</p>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', color: '#fbbf24' }}>{mockData.solarPower}</p>
           </div>
 
-          <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-            <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
-              <Activity className="w-4 h-4" />
-              <span className="text-xs font-medium">系統狀態</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-              <p className="text-lg font-bold">{mockData.systemStatus}</p>
-            </div>
-            <p className="text-xs text-slate-400 mt-1">運作 {mockData.uptime}</p>
+          <div style={{ flex: 1, height: '2px', background: '#334155', margin: '0 8px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: '#0f172a', padding: '0 4px' }}>→</div>
           </div>
-        </section>
 
-        <section className="mt-6 mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold">功率趨勢</h2>
-            <button className="text-[#136dec] text-xs font-semibold">查看更多</button>
+          {/* Home */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(59,130,246,0.1)', border: '2px solid #3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px', boxShadow: '0 0 15px rgba(59,130,246,0.3)' }}>
+              <svg width="28" height="28" fill="#3b82f6" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+            <p style={{ fontSize: '12px', color: '#64748b' }}>負載</p>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', color: '#3b82f6' }}>{mockData.homePower}</p>
           </div>
-          <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex items-end gap-1 h-40">
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-amber-400/30 rounded-t" style={{ height: '60%' }}></div></div>
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-amber-400/30 rounded-t" style={{ height: '45%' }}></div></div>
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-amber-400/30 rounded-t" style={{ height: '70%' }}></div></div>
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-amber-400/30 rounded-t" style={{ height: '55%' }}></div></div>
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-emerald-500/30 rounded-t" style={{ height: '80%' }}></div></div>
-            <div className="flex-1 flex flex-col items-center h-full justify-end"><div className="w-full bg-blue-500/30 rounded-t" style={{ height: '65%' }}></div></div>
-          </div>
-        </section>
-      </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 border-t border-slate-800 bg-slate-950 px-2 pb-6 pt-3 flex justify-around">
-        <Link to="/dashboard" className="flex flex-col items-center gap-1 text-[#136dec]">
-          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M3 13h8V3H3v10zm0-8h8v10H3V5z" />
-          </svg>
-          <span className="text-[10px] font-bold">儀表板</span>
+          <div style={{ flex: 1, height: '2px', background: '#334155', margin: '0 8px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: '#0f172a', padding: '0 4px' }}>←</div>
+          </div>
+
+          {/* Grid */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(100,116,139,0.1)', border: '1px solid #475569', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px' }}>
+              <svg width="24" height="24" fill="#64748b" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            </div>
+            <p style={{ fontSize: '12px', color: '#64748b' }}>電網</p>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', color: '#64748b' }}>{mockData.gridPower}</p>
+          </div>
+        </div>
+
+        {/* Battery */}
+        <div style={{ textAlign: 'center', paddingTop: '16px', borderTop: '1px solid #334155' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px' }}>
+            <svg width="24" height="24" fill="#10b981" viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM11 20v-5.5H9L13 7v5.5h2L11 20z"/></svg>
+          </div>
+          <p style={{ fontSize: '12px', color: '#64748b' }}>儲能電池</p>
+          <p style={{ fontSize: '14px', fontWeight: 'bold', color: '#10b981' }}>1.2 kW (充電)</p>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+        <div className="card">
+          <p style={{ fontSize: '12px', color: '#64748b', marginBottom: '8px' }}>當日發電量</p>
+          <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{mockData.dailyGeneration}</p>
+          <p style={{ fontSize: '12px', color: '#10b981', marginTop: '4px' }}>↑ 12% 同期</p>
+        </div>
+        <div className="card">
+          <p style={{ fontSize: '12px', color: '#64748b', marginBottom: '8px' }}>系統狀態</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{mockData.systemStatus}</p>
+          </div>
+          <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>運作 {mockData.uptime}</p>
+        </div>
+      </div>
+
+      {/* Bottom Navigation */}
+      <nav className="bottom-nav">
+        <Link to="/dashboard" className="nav-item active">
+          <div className="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0-8h8v10H3V5z"/></svg></div>
+          儀表板
         </Link>
-        <Link to="/monitoring" className="flex flex-col items-center gap-1 text-slate-400">
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6" />
-          </svg>
-          <span className="text-[10px] font-medium">監控</span>
+        <Link to="/monitoring" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6"/></svg></div>
+          監控
         </Link>
-        <Link to="/analysis" className="flex flex-col items-center gap-1 text-slate-400">
-          <BarChart3 className="w-7 h-7" />
-          <span className="text-[10px] font-medium">分析</span>
+        <Link to="/analysis" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+          分析
         </Link>
-        <Link to="/settings" className="flex flex-col items-center gap-1 text-slate-400">
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.828 2.828v3.042c0 1.756-.166 2.904-1.356 3.42l-.804 1.088c-.428.124-.864.192-1.308.192H9.173c-.444 0-.88-.068-1.308-.192l-.804-1.088c-1.19-.516-1.356-1.664-1.356-3.42V6.156c0-1.756.166-2.904 1.356-3.42l.804-1.088c.428-.124.864-.192 1.308-.192h2.176c.444 0 .88.068 1.308.192l.804 1.088c1.19.516 1.356 1.664 1.356 3.42v3.042z" />
-          </svg>
-          <span className="text-[10px] font-medium">設定</span>
+        <Link to="/settings" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+          設定
         </Link>
       </nav>
     </div>

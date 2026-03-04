@@ -1,134 +1,96 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Globe, Moon, Info, LogOut, BarChart3, Battery, Settings as SettingsIcon } from 'lucide-react'
 
-export default function SettingsPage({ onLogout }) {
-  const handleLogout = () => {
-    if (onLogout) {
-      onLogout()
-    }
-    window.location.href = '/login'
-  }
-
+export default function Settings() {
   return (
-    <div className="min-h-screen bg-[#0b0f15] text-slate-200 font-sans">
-      <div className="relative flex-screen w-full flex h-auto min-h-col overflow-x-hidden max-w-md mx-auto border-x border-slate-800 bg-[#0b0f15]">
-        <header className="sticky top-0 z-10 flex items-center bg-[#0b0f15]/80 backdrop-blur-md p-4 justify-between border-b border-slate-800/50">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-slate-800 cursor-pointer">
-            <ArrowLeft className="w-6 h-6" />
-          </div>
-          <h2 className="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">
-            台灣微網科技
-          </h2>
-        </header>
+    <div style={{ minHeight: '100vh', padding: '20px', paddingBottom: '100px' }}>
+      <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '20px' }}>⚙️ 系統設定</h2>
 
-        <main className="flex-1 pb-24">
-          <section className="p-6">
-            <div className="flex items-center gap-5 p-4 rounded-2xl bg-slate-900/40 border border-slate-800/50">
-              <div className="relative">
-                <div 
-                  className="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 border-2 border-[#136dec] shadow-lg shadow-[#136dec]/20"
-                  style={{ backgroundColor: '#1a2744' }}
-                ></div>
-                <button className="absolute bottom-0 right-0 bg-[#136dec] h-7 w-7 rounded-full flex items-center justify-center border-2 border-[#0b0f15] shadow-lg">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.879-2.879a1.5 1.5 0 10-2.121 0L12 7.343l-1.414 1.414m2.828 2.828L12 12.657" />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-xl font-bold text-white">能源管理員</p>
-                <p className="text-slate-400 text-sm">進階帳戶</p>
-                <div className="mt-2 inline-flex items-center px-2.5 py-1 rounded-lg bg-[#136dec]/10 text-[#136dec] text-[11px] font-bold tracking-wider">
-                  ID: ESS-882910
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="px-6 space-y-4">
-            <div className="space-y-2">
-              <h3 className="text-[11px] font-bold uppercase tracking-[0.1em] text-slate-500 px-1">一般設定</h3>
-              <div className="bg-slate-900/40 border border-slate-800/50 rounded-2xl overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-4 hover:bg-slate-800/30 transition-colors cursor-pointer border-b border-slate-800/30">
-                  <div className="flex items-center gap-4">
-                    <div className="size-10 rounded-xl bg-slate-800/50 flex items-center justify-center text-slate-400">
-                      <Globe className="w-5 h-5" />
-                    </div>
-                    <p className="text-sm font-medium">語言選擇</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-slate-500">繁體中文</span>
-                    <svg className="text-slate-500 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between px-4 py-4">
-                  <div className="flex items-center gap-4">
-                    <div className="size-10 rounded-xl bg-slate-800/50 flex items-center justify-center text-slate-400">
-                      <Moon className="w-5 h-5" />
-                    </div>
-                    <p className="text-sm font-medium">顯示模式</p>
-                  </div>
-                  <div className="flex items-center gap-2 text-[#136dec] bg-[#136dec]/10 px-3 py-1.5 rounded-full">
-                    <span className="text-xs font-bold">深色模式</span>
-                    <svg className="w-4 h-4 text-[#136dec]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 018 9z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2 mt-6">
-              <h3 className="text-[11px] font-bold uppercase tracking-[0.1em] text-slate-500 px-1">安全性與關於</h3>
-              <div className="bg-slate-900/40 border border-slate-800/50 rounded-2xl overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-4 border-b border-slate-800/30">
-                  <div className="flex items-center gap-4">
-                    <div className="size-10 rounded-xl bg-slate-800/50 flex items-center justify-center text-slate-400">
-                      <Info className="w-5 h-5" />
-                    </div>
-                    <p className="text-sm font-medium">軟體版本</p>
-                  </div>
-                  <span className="text-sm font-mono text-slate-500">V2.4.0</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8 pb-12">
-              <button 
-                onClick={handleLogout}
-                className="w-full py-4 rounded-2xl border border-red-500/30 text-red-500 font-bold hover:bg-red-500/5 transition-all flex items-center justify-center gap-3"
-              >
-                <LogOut className="w-5 h-5" />
-                登出帳號
-              </button>
-            </div>
-          </section>
-        </main>
-
-        <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#0b0f15]/90 backdrop-blur-lg border-t border-slate-800/50 px-6 pb-8 pt-3 flex justify-between items-center z-20">
-          <Link to="/dashboard" className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400">
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2V9a1 1 0 00-1-1m-4 4l-2 2m0 0l7 7-7 7m-4-4v6" />
-            </svg>
-            <span className="text-[10px] font-medium">儀表板</span>
-          </Link>
-          <Link to="/monitoring" className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400">
-            <Battery className="w-7 h-7" />
-            <span className="text-[10px] font-medium">監控</span>
-          </Link>
-          <Link to="/analysis" className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400">
-            <BarChart3 className="w-7 h-7" />
-            <span className="text-[10px] font-medium">分析</span>
-          </Link>
-          <Link to="/settings" className="flex flex-1 flex-col items-center justify-end gap-1 text-[#136dec]">
-            <SettingsIcon className="w-7 h-7" fill="currentColor" />
-            <span className="text-[10px] font-bold">設定</span>
-          </Link>
-        </nav>
+      {/* Profile */}
+      <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+        <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #1e3a5f, #136dec)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <div>
+          <p style={{ fontSize: '18px', fontWeight: 'bold' }}>能源管理員</p>
+          <p style={{ fontSize: '14px', color: '#64748b' }}>進階帳戶</p>
+          <span style={{ display: 'inline-block', marginTop: '4px', padding: '4px 8px', borderRadius: '6px', background: 'rgba(19,109,236,0.1)', color: '#136dec', fontSize: '11px' }}>ID: ESS-882910</span>
+        </div>
       </div>
+
+      {/* Settings List */}
+      <div style={{ marginBottom: '24px' }}>
+        <h3 style={{ fontSize: '12px', color: '#64748b', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>一般設定</h3>
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderBottom: '1px solid #1e293b' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="18" height="18" fill="#64748b" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+              </div>
+              <span>語言選擇</span>
+            </div>
+            <span style={{ color: '#64748b' }}>繁體中文 →</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="18" height="18" fill="#64748b" viewBox="0 0 24 24"><path d="M9 21c4.55 0 8-3.13 8-7s-3.45-7-8-7c-.93 0-1.82.12-2.66.35C6.6 7.69 6 8.77 6 10c0 .88.25 1.7.67 2.4.07.12.15.24.24.35-.08.07-.16.14-.24.21-.41.35-.67.83-.67 1.36 0 .53.26 1.01.67 1.36.08.07.16.14.24.21.42.35.98.46 1.42.46.93 0 1.82-.12 2.66-.35.16.07.33.12.5.18-.42.64-.99 1.18-1.65 1.58C10.4 20.68 9.74 21 9 21zm-3-8c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"/></svg>
+              </div>
+              <span>顯示模式</span>
+            </div>
+            <span style={{ background: 'rgba(19,109,236,0.1)', color: '#136dec', padding: '4px 10px', borderRadius: '12px', fontSize: '12px' }}>深色模式</span>
+          </div>
+        </div>
+      </div>
+
+      {/* About */}
+      <div style={{ marginBottom: '24px' }}>
+        <h3 style={{ fontSize: '12px', color: '#64748b', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>關於</h3>
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="18" height="18" fill="#64748b" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              </div>
+              <span>軟體版本</span>
+            </div>
+            <span style={{ color: '#64748b', fontFamily: 'monospace' }}>V2.4.0</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Logout */}
+      <button style={{ 
+        width: '100%', 
+        padding: '16px', 
+        borderRadius: '12px', 
+        border: '1px solid rgba(244,63,94,0.3)', 
+        background: 'transparent', 
+        color: '#f43f5e',
+        fontWeight: 'bold',
+        cursor: 'pointer'
+      }}>
+        登出帳號
+      </button>
+
+      {/* Bottom Nav */}
+      <nav className="bottom-nav">
+        <Link to="/dashboard" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2V9a1 1 0 00-1-1m-4 4l-2 2m0 0l7 7-7 7m-4-4v6"/></svg></div>
+          儀表板
+        </Link>
+        <Link to="/monitoring" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6"/></svg></div>
+          監控
+        </Link>
+        <Link to="/analysis" className="nav-item">
+          <div className="nav-icon"><svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+          分析
+        </Link>
+        <Link to="/settings" className="nav-item active">
+          <div className="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/></svg></div>
+          設定
+        </Link>
+      </nav>
     </div>
   )
 }
